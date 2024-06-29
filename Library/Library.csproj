@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net452;net5.0</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     
-    <PackageId>ExpressionTreeToString</PackageId>
-    <Authors>Zev Spitz</Authors>
-    <Company />
+    <PackageId>ExpressionTreeToStringWithCypher</PackageId>
+    <Authors>Palash J Karmaker, Zev Spitz</Authors>
     <Product>ExpressionTreeToString</Product>
     <Description>String representations of expression trees or expression tree parts - C#, Visual Basic, Expression factory method calls, DebugView</Description>
     <Copyright>Copyright (c) 2019 Zev Spitz</Copyright>
@@ -19,7 +18,7 @@
     <PackageReleaseNotes>Non-statement expression support is complete, escaped string literals, exceptions written into source</PackageReleaseNotes>
     <AssemblyName>ExpressionTreeToString</AssemblyName>
     <RootNamespace>ExpressionTreeToString</RootNamespace>
-    <Version>1.0.1</Version>
+    <Version>1.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Configurations>Debug;Release;ReleaseCI</Configurations>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
@@ -35,9 +34,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="ZSpitz.Util" Version="0.1.113" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="ZSpitz.Util" Version="0.1.125" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +43,6 @@
       <_Parameter1>Tests</_Parameter1>
     </AssemblyAttribute>
 
-    <None Include="..\readme.md" Pack="true" PackagePath="\"/>
+    <None Include="..\readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>

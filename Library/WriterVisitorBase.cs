@@ -23,7 +23,7 @@ namespace ExpressionTreeToString {
         private readonly List<InsertionPoint> insertionPoints;
         private InsertionPoint ip;
         protected readonly Language? language;
-        private readonly List<string> pathSegments = new();
+        private readonly List<string> pathSegments = [];
         private readonly bool hasPathSpans;
 
         protected int CurrentIndentationLevel => ip.indentationLevel;
@@ -36,7 +36,7 @@ namespace ExpressionTreeToString {
 
             Dictionary<string, (int start, int length)>? pathSpans=null;
             if (insertionPoints.Any(x => x.pathSpans is { })) {
-                pathSpans = new Dictionary<string, (int start, int length)>();
+                pathSpans = [];
                 var offset = 0;
                 foreach (var ip in insertionPoints.Where(ip => ip.sb.Length > 0)) {
                     ip.pathSpans!.SelectKVP((path, span) => KVP(path, (span.start + offset, span.length))).AddRangeTo(pathSpans);
@@ -50,7 +50,7 @@ namespace ExpressionTreeToString {
         protected WriterVisitorBase(object o, OneOf<string, Language?> languageArg, IEnumerable<string>? insertionPointKeys, bool hasPathSpans) {
             language = languageArg.ResolveLanguage();
             this.hasPathSpans = hasPathSpans;
-            insertionPoints = (insertionPointKeys ?? new[] { "" }).Select(x => new InsertionPoint(x, hasPathSpans)).ToList();
+            insertionPoints = (insertionPointKeys ?? [""]).Select(x => new InsertionPoint(x, hasPathSpans)).ToList();
             ip = insertionPoints.Get("");
 
             WriteNode("", o);
