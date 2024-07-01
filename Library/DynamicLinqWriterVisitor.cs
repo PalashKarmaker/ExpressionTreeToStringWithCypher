@@ -18,8 +18,8 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         ["parameters", ""],
         hasPathSpans
         ) {
-    public static readonly HashSet<Type> CustomAccessibleTypes = new();
-    private static readonly HashSet<Type> predefinedTypes = new() {
+    public static readonly HashSet<Type> CustomAccessibleTypes = [];
+    private static readonly HashSet<Type> predefinedTypes = [
         typeof(object),
         typeof(bool),
         typeof(char),
@@ -42,7 +42,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         typeof(Math),
         typeof(Convert),
         typeof(Uri)
-    };
+    ];
 
     private static bool isAccessibleType(Type t) =>
         t.IsNullable() ?
@@ -50,7 +50,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
             t.In(predefinedTypes) || t.In(CustomAccessibleTypes);
 
     protected ParameterExpression? currentScoped;
-    private static readonly Dictionary<ExpressionType, string> _simpleBinaryOperators = new() {
+    private static readonly Dictionary<ExpressionType, string> simpleBinaryOperators = new() {
         [Add] = "+",
         [AddChecked] = "+",
         [Divide] = "/",
@@ -72,7 +72,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
 
 
 
-    protected virtual Dictionary<ExpressionType, string> SimpleBinaryOperators => _simpleBinaryOperators;
+    protected virtual Dictionary<ExpressionType, string> SimpleBinaryOperators => simpleBinaryOperators;
 
     // can be verified against https://dynamic-linq.net/expression-language#operators using:
     // precedence.GroupBy(kvp => kvp.Value, kvp => kvp.Key, (key, grp) => new {key, values = grp.OrderBy(x => x.ToString()).Joined(", ")}).OrderBy(x => x.key);
@@ -832,10 +832,8 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         { typeof(float), "float" },
     };
 
-    private static string typeName(Type t) =>
+    protected static string typeName(Type t) =>
         t.IsNullable() ?
             typeName(t.UnderlyingIfNullable()) + "?" :
-            typeAliases.TryGetValue(t, out var name) ?
-                name :
-                t.Name;
+            typeAliases.TryGetValue(t, out var name) ? name : t.Name;
 }

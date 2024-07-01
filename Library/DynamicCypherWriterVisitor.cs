@@ -1,4 +1,5 @@
-﻿using OneOf;
+﻿using ExpressionTreeToString.Util;
+using OneOf;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using ZSpitz.Util;
@@ -6,9 +7,9 @@ using static System.Linq.Expressions.ExpressionType;
 
 namespace ExpressionTreeToString;
 
-public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg, bool hasPathSpans) : 
+public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg, bool hasPathSpans) :
     DynamicLinqWriterVisitor(o, languageArg, hasPathSpans) {
-    private static readonly Dictionary<ExpressionType, string> _simpleBinaryOperators = new() {
+    private static readonly Dictionary<ExpressionType, string> simpleBinaryOperators = new() {
         [Add] = "+",
         [AddChecked] = "+",
         [Divide] = "/",
@@ -28,7 +29,7 @@ public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropert
         [Coalesce] = "??",
     };
 
-    protected override Dictionary<ExpressionType, string> SimpleBinaryOperators => _simpleBinaryOperators;
+    protected override Dictionary<ExpressionType, string> SimpleBinaryOperators => simpleBinaryOperators;
 
     protected override void WriteProperty(string? s) => base.Write(cypherPropertyMap[s]);
     protected override void WriteLambda(LambdaExpression expr) {
@@ -53,4 +54,29 @@ public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropert
             insideLambda = false;
         }
     }
+
+    protected override void WriteNew(NewExpression expr) {
+        if (expr.Type.IsAnonymous()) {
+            //Write("new(");
+            foreach (var (name, arg, index) in expr.NamesArguments()) {
+                if (index > 0) { Write(", "); }
+
+                // if the expression being assigned from is a property access with the same name as the target property, 
+                // write only the target expression.
+                // Otherwise, write `property = expression`
+                if (!(arg is MemberExpression mexpr && mexpr.Member.Name.Replace("$VB$Local_", "") == name)) {
+                    Write($"{name} = ");
+                }
+                WriteNode($"Arguments[{index}]", arg);
+            }
+            //Write(")");
+            return;
+        }
+
+        Write(typeName(expr.Type));
+        Write("(");
+        WriteNodes("Arguments", expr.Arguments);
+        Write(")");
+    }
+
 }
