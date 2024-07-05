@@ -78,5 +78,17 @@ public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropert
         WriteNodes("Arguments", expr.Arguments);
         Write(")");
     }
+    protected override void WriteMemberAccess(MemberExpression expr) {
+        if (expr.Expression is { } && expr.Expression.Type.IsClosureClass() && expr.Expression is ConstantExpression cexpr) {
+            //writeDynamicLinqParameter((cexpr.Value, expr.Member), () => expr.Member.Name);
+            var obj = expr.ExtractValue();//TODO: Parameterize
+            if (obj is string)
+                Write($"'{obj}'");
+            else
+                Write(obj.ToString());
+            return;
+        }
 
+        writeMemberUse("Expression", expr.Expression, expr.Member);
+    }
 }

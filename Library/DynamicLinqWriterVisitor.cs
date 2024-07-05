@@ -434,7 +434,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         writeMemberUse("Expression", expr.Expression, expr.Member);
     }
 
-    private void writeDynamicLinqParameter(object key, Func<string> value) {
+    protected void writeDynamicLinqParameter(object key, Func<string> value) {
         var id = getParaneterId(key, out var isNew);
         if (isNew) {
             SetInsertionPoint("parameters");
@@ -487,7 +487,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         Write("]");
     }
 
-    private void writeMemberUse(string instancePath, Expression? instance, MemberInfo mi) {
+    protected void writeMemberUse(string instancePath, Expression? instance, MemberInfo mi) {
         var declaringType = mi.DeclaringType!;
         if (instance is null) {
             if (!isAccessibleType(declaringType)) {
