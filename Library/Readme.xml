@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExpressionTreeToString</name>
+    </assembly>
+    <members>
+        <member name="T:ExpressionTreeToString.DynamicCypherWriterVisitor">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:ExpressionTreeToString.DynamicLinqWriterVisitor" />
+        </member>
+        <member name="M:ExpressionTreeToString.DynamicCypherWriterVisitor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Object,OneOf.OneOf{System.String,System.Nullable{ZSpitz.Util.Language}},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:ExpressionTreeToString.DynamicLinqWriterVisitor" />
+        </member>
+        <member name="M:ExpressionTreeToString.ExpressionExtension.WordInDoubleQuotes">
+            <remarks>
+            Pattern:<br/>
+            <code>\\\\"(?&lt;word&gt;\\w+)\\\\"</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "\\\"".<br/>
+            ○ "word" capture group.<br/>
+                ○ Match a word character atomically at least once.<br/>
+            ○ Match the string "\\\"".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:ExpressionTreeToString.FactoryMethodsWriterVisitor.writeMethodCall(System.String,System.Collections.IEnumerable)">
+            <param name="args">The arguments to write. If a tuple of string and node type, will write as single node. If a tuple of string and property type, will write as multiple nodes.</param>
+        </member>
+        <member name="M:ExpressionTreeToString.WriterVisitorBase.WriteNode(System.String,System.Object,System.Boolean,System.Object)">
+            <summary>Write a string-rendering of an expression or other type used in expression trees</summary>
+            <param name="o">Object to be rendered</param>
+            <param name="parameterDeclaration">For ParameterExpression, this is a parameter declaration</param>
+            <param name="blockType">For BlockExpression, sets the preferred block type</param>
+            
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the WordInDoubleQuotes method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.WordInDoubleQuotes_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsWordChar(System.Char)">
+            <summary>Determines whether the character is part of the [\w] set.</summary>
+        </member>
+    </members>
+</doc>

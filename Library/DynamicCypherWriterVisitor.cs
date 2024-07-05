@@ -6,7 +6,10 @@ using ZSpitz.Util;
 using static System.Linq.Expressions.ExpressionType;
 
 namespace ExpressionTreeToString;
-
+/// <summary>
+/// 
+/// </summary>
+/// <seealso cref="ExpressionTreeToString.DynamicLinqWriterVisitor" />
 public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg, bool hasPathSpans) :
     DynamicLinqWriterVisitor(o, languageArg, hasPathSpans) {
     private static readonly Dictionary<ExpressionType, string> simpleBinaryOperators = new() {

@@ -1,48 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    
-    <PackageId>ExpressionTreeToStringWithCypher</PackageId>
-    <Authors>Palash J Karmaker, Zev Spitz</Authors>
-    <Product>ExpressionTreeToString</Product>
-    <Description>String representations of expression trees or expression tree parts - C#, Visual Basic, Expression factory method calls, DebugView</Description>
-    <Copyright>Copyright (c) 2019 Zev Spitz</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/zspitz/ExpressionTreeToString/wiki</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/zspitz/ExpressionTreeToString.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>expression-tree code-generation visual-basic.net vb.net csharp</PackageTags>
-    <PackageReleaseNotes>Non-statement expression support is complete, escaped string literals, exceptions written into source</PackageReleaseNotes>
-    <AssemblyName>ExpressionTreeToString</AssemblyName>
-    <RootNamespace>ExpressionTreeToString</RootNamespace>
-    <Version>1.0.2</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Configurations>Debug;Release;ReleaseCI</Configurations>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
 
-  <PropertyGroup Condition="'$(CI)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
+		<PackageId>ExpressionTreeToStringWithCypher</PackageId>
+		<Authors>Palash J Karmaker, Zev Spitz</Authors>
+		<Product>ExpressionTreeToString</Product>
+		<Description>String representations of expression trees or expression tree parts - C#, Visual Basic, Expression factory method calls, DebugView</Description>
+		<Copyright>Copyright (c) 2019 Zev Spitz</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/zspitz/ExpressionTreeToString/wiki</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/zspitz/ExpressionTreeToString.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>expression-tree code-generation visual-basic.net vb.net csharp</PackageTags>
+		<PackageReleaseNotes>Non-statement expression support is complete, escaped string literals, exceptions written into source</PackageReleaseNotes>
+		<AssemblyName>ExpressionTreeToString</AssemblyName>
+		<RootNamespace>ExpressionTreeToString</RootNamespace>
+		<Version>1.0.2</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<DocumentationFile>$(MSBuildProjectDirectory)\Readme.xml</DocumentationFile>
+		<!--<DefaultDocumentationGeneratedPages>Assembly</DefaultDocumentationGeneratedPages>-->
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Configurations>Debug;Release;ReleaseCI</Configurations>
 
-  <ItemGroup>
-    <PackageReference Include="ZSpitz.Util" Version="0.1.125" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-  </ItemGroup>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>Tests</_Parameter1>
-    </AssemblyAttribute>
+	<PropertyGroup Condition="'$(CI)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
 
-    <None Include="..\readme.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Vsxmd" Version="1.4.5">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="ZSpitz.Util" Version="0.1.125" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Tests</_Parameter1>
+		</AssemblyAttribute>
+
+		<None Include="$(MSBuildProjectDirectory)\readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>
