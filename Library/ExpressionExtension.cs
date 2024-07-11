@@ -11,6 +11,12 @@ public static partial class ExpressionExtension {
          var r = InvokeForCypher(cypherPropertyMap, BuiltinRenderer.DynamicLinq, expr, Language.CSharp);
         return WordInDoubleQuotes().Replace(r, m => $"'{m.Groups["word"]}'");
     }
+    public static string ToParameterizedCypherString(this Expression expr, Dictionary<string, string> cypherPropertyMap, ref Dictionary<string, object?> parameters) {
+        var visitor = new DynamicParameterizedCypherWriterVisitor(cypherPropertyMap, expr, Language.CSharp, parameters);
+
+        var (q, p) = visitor.GetParameterizedResult();
+        return WordInDoubleQuotes().Replace(q, m => $"'{m.Groups["word"]}'");
+    }
 
     public static string ToString(this Expression expr, OneOf<string, BuiltinRenderer> rendererArg, OneOf<string, Language?> language = default) =>
         Invoke(rendererArg, expr, language);
