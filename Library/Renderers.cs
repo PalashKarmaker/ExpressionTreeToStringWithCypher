@@ -25,8 +25,6 @@ public static class Renderers {
         };
 
     public static void Register(string key, Renderer writer) => writers.Add(key, writer);
-    public static string InvokeForCypher(Dictionary<string, string> cypherPropertyMap, OneOf<string, BuiltinRenderer> rendererArg, object o, OneOf<string, Language?> language) =>
-        new DynamicCypherWriterVisitor(cypherPropertyMap, o, language, false).GetResult().result;
 
     public static string Invoke(OneOf<string, BuiltinRenderer> rendererArg, object o, OneOf<string, Language?> language) =>
         writers[rendererArg.ResolveRendererKey()].Invoke(o, language, false).result;

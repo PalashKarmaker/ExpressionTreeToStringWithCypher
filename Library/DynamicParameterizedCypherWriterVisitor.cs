@@ -4,9 +4,12 @@ using System.Linq.Expressions;
 using ZSpitz.Util;
 
 namespace ExpressionTreeToString;
-
+/// <summary>
+/// 
+/// </summary>
+/// <seealso cref="DynamicCypherWriterVisitor" />
 public class DynamicParameterizedCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg, Dictionary<string, object?> parameters) :
-    DynamicCypherWriterVisitor(cypherPropertyMap, o, languageArg, false) {
+    DynamicCypherWriterVisitor(cypherPropertyMap, o, languageArg) {
     public (string result, Dictionary<string, object?> parameters) GetParameterizedResult() => (GetResult().result, parameters);
     protected override void WriteMemberAccess(MemberExpression expr) {
         if (expr.Expression is { } && expr.Expression.Type.IsClosureClass() && expr.Expression is ConstantExpression cexpr) {

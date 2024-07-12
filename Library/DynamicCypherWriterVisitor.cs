@@ -1,6 +1,5 @@
 ﻿using ExpressionTreeToString.Util;
 using OneOf;
-using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using ZSpitz.Util;
@@ -11,8 +10,8 @@ namespace ExpressionTreeToString;
 /// 
 /// </summary>
 /// <seealso cref="DynamicLinqWriterVisitor" />
-public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg, bool hasPathSpans) :
-    DynamicLinqWriterVisitor(o, languageArg, hasPathSpans) {
+public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropertyMap, object o, OneOf<string, Language?> languageArg) :
+    DynamicLinqWriterVisitor(o, languageArg, false) {
     private static readonly Dictionary<ExpressionType, string> simpleBinaryOperators = new() {
         [Add] = "+",
         [AddChecked] = "+",

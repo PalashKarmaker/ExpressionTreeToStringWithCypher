@@ -10,11 +10,23 @@
             </summary>
             <seealso cref="T:ExpressionTreeToString.DynamicLinqWriterVisitor" />
         </member>
-        <member name="M:ExpressionTreeToString.DynamicCypherWriterVisitor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Object,OneOf.OneOf{System.String,System.Nullable{ZSpitz.Util.Language}},System.Boolean)">
+        <member name="M:ExpressionTreeToString.DynamicCypherWriterVisitor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Object,OneOf.OneOf{System.String,System.Nullable{ZSpitz.Util.Language}})">
             <summary>
             
             </summary>
             <seealso cref="T:ExpressionTreeToString.DynamicLinqWriterVisitor" />
+        </member>
+        <member name="T:ExpressionTreeToString.DynamicParameterizedCypherWriterVisitor">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:ExpressionTreeToString.DynamicCypherWriterVisitor" />
+        </member>
+        <member name="M:ExpressionTreeToString.DynamicParameterizedCypherWriterVisitor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Object,OneOf.OneOf{System.String,System.Nullable{ZSpitz.Util.Language}},System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:ExpressionTreeToString.DynamicCypherWriterVisitor" />
         </member>
         <member name="M:ExpressionTreeToString.ExpressionExtension.WordInDoubleQuotes">
             <remarks>

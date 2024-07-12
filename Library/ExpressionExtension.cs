@@ -8,7 +8,7 @@ using static ExpressionTreeToString.Renderers;
 namespace ExpressionTreeToString; 
 public static partial class ExpressionExtension {
     public static string ToCypherString(this Expression expr, Dictionary<string, string> cypherPropertyMap) {
-         var r = InvokeForCypher(cypherPropertyMap, BuiltinRenderer.DynamicLinq, expr, Language.CSharp);
+         var r = new DynamicCypherWriterVisitor(cypherPropertyMap, expr, Language.CSharp).GetResult().result;
         return WordInDoubleQuotes().Replace(r, m => $"'{m.Groups["word"]}'");
     }
     public static string ToParameterizedCypherString(this Expression expr, Dictionary<string, string> cypherPropertyMap, ref Dictionary<string, object?> parameters) {
