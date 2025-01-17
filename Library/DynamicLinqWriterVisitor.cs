@@ -19,7 +19,7 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         hasPathSpans
         ) {
     public static readonly HashSet<Type> CustomAccessibleTypes = [];
-    private static readonly HashSet<Type> predefinedTypes = [
+    protected static readonly HashSet<Type> predefinedTypes = [
         typeof(object),
         typeof(bool),
         typeof(char),
@@ -203,18 +203,16 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
         if (grouped.Any(grp => grp.Key is { } && grp.Count() > 1)) { // can any elements be written using `in`?
             var firstClause = true;
             foreach (var grp in grouped) {
-                if (firstClause) {
+                if (firstClause)
                     firstClause = false;
-                } else {
-                    Write(" || ");
-                }
+                else
+                    Write(" || ");                
 
                 if (grp.Key is null || grp.Count() == 1) {
                     // if only one element in the group, there's no need for a foreach
                     // but the rest of the logic is shared
-                    foreach (var x in grp) {
+                    foreach (var x in grp)
                         WriteNode(x);
-                    }
                     continue;
                 }
 

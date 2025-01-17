@@ -1,5 +1,6 @@
 ﻿using ExpressionTreeToString.Util;
 using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using ZSpitz.Util;
@@ -87,6 +88,8 @@ public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropert
             var obj = expr.ExtractValue();//TODO: Parameterize
             if (obj is string)
                 Write($"'{obj}'");
+            else if (obj is DateTime dt)
+                Write( $"datetime('{dt:s}Z')");
             else
                 Write(obj.ToString());
             return;

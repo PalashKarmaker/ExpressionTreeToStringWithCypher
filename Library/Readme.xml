@@ -95,5 +95,8 @@
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsWordChar(System.Char)">
             <summary>Determines whether the character is part of the [\w] set.</summary>
         </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_EE3B34680088DA678A1ECA960F9C27DC7EA80F290093EB026AB0E6B54A34F095">
+            <summary>Supports searching for the string "\\\"".</summary>
+        </member>
     </members>
 </doc>
