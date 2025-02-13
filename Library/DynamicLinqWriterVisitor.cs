@@ -407,8 +407,13 @@ public class DynamicLinqWriterVisitor(object o, OneOf<string, Language?> languag
             // otherwise Dynamic LINQ interperts it as a conversion, and fails
             Write($"DateTime({dte.Ticks}, DateTimeKind.{dte.Kind})");
             return;
+        } 
+        else if (value is DateTimeOffset dtOfset) {
+            // we need to supply both parameters to the DateTime constructor;
+            // otherwise Dynamic LINQ interperts it as a conversion, and fails
+            Write($"DateTime({dtOfset.Ticks}, DateTimeKind.{dtOfset.DateTime.Kind})");
+            return;
         }
-
         // TODO handle DateTimeOffset and TimeSpan
 
         writeDynamicLinqParameter(value, () => {

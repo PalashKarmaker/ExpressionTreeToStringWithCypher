@@ -18,7 +18,7 @@
 		<PackageReleaseNotes>Non-statement expression support is complete, escaped string literals, exceptions written into source</PackageReleaseNotes>
 		<AssemblyName>ExpressionTreeToString</AssemblyName>
 		<RootNamespace>ExpressionTreeToString</RootNamespace>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<DocumentationFile>$(MSBuildProjectDirectory)\Readme.xml</DocumentationFile>
 		<!--<DefaultDocumentationGeneratedPages>Assembly</DefaultDocumentationGeneratedPages>-->

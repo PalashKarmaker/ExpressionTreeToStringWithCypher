@@ -90,6 +90,8 @@ public class DynamicCypherWriterVisitor(Dictionary<string, string> cypherPropert
                 Write($"'{obj}'");
             else if (obj is DateTime dt)
                 Write( $"datetime('{dt:s}Z')");
+            else if (obj is DateTimeOffset dtOffset)
+                Write($"datetime('{dtOffset:s}Z')");
             else
                 Write(obj.ToString());
             return;
